@@ -20,7 +20,7 @@ An SSH certificate for the Linux VMs for your AKS cluster. You can read more abo
 &nbsp;   
 AKS with RBAC needs two applications created in Azure AD. The first one is a **Server**  application, the second is a **client**  application. We will use the Azure portal to create them.   
 &nbsp;   
-Note:   
+>Note:   
 You can use the same **Server**  application for multiple AKS clusters, but it is recommended to use one **Client**  application per cluster.   
 &nbsp;
 ## Create the Server application   
@@ -55,9 +55,10 @@ Now enter a **Description**  for the key and select when you would like it to **
 &nbsp;   
 Take a copy of the **Value** . We will need it later when we create the AKS cluster. The value is referred to as the **Server application secret** .    
 &nbsp;   
-Warning:   
-You will not be able to get this value again if you leave this blade. Make sure you copy it.   
-&nbsp;   
+>Warning:   
+You will not be able to get this value again if you leave this blade. Make sure you copy it.  
+
+ 
 &nbsp;   
 Now click on **Required permissions**  In this blade click on **+ add** .   
 &nbsp;   
@@ -166,13 +167,13 @@ Now its time to initialize Terraform. First we need to update the backend.tfvars
 &nbsp;   
 Lets test our Terraform files to see what will happen. We use the plan option for this.   
 &nbsp;   
-`terraform plan -out &quot;out.plan&quot;`   
+`terraform plan -out "out.plan"`   
 &nbsp;   
 [![clip_image023.png][27]][27]   
 &nbsp;   
 Everything looks good. 4 items are going to be created. Now its time to actually apply the configuration. To do that just run:   
 &nbsp;   
-`terraform apply &quot;out.plan&quot; `  
+`terraform apply "out.plan" `  
 &nbsp;   
 Its going to take some time to build everything. Maybe 20 minutes or more. You might want to go get a cup of tea.   
 &nbsp;   
@@ -189,6 +190,7 @@ That&#39;s the cluster deployed! Now its time for us to configure RBAC. To do th
 In the Git repo under the k8s folder you will find two yaml files one to add a user the other for a group. The user one is easy. You just change the email address at the bottom. For the group one you will need to go into Azure AD and get the Group **Object ID** . Once you have the .yaml file you want to use ready. Make sure your in the directory with the files and then type the following to apply it.   
 &nbsp;   
 `kubectl apply -f rbac-aad-group.yaml   `
+
 &nbsp;   
 [![clip_image026.png][30]][30]   
 &nbsp;
@@ -197,10 +199,12 @@ In the Git repo under the k8s folder you will find two yaml files one to add a u
 Now that we have configured the cluster for RBAC its time to connect to it. Lets get some non admin credentials first.   
 &nbsp;   
 `az aks get-credentials --resource-group pixelrobots-tst-aks --name pixelrobots-tst-aks   `
+
 &nbsp;   
 Lets use the kubectl to see what nodes we have.   
 &nbsp;   
 `kubectl get nodes   `
+
 &nbsp;   
 You will notice it is asking us to sign in to the azure portal. Go ahead and do it.   
 &nbsp;   
@@ -222,21 +226,21 @@ As you can see you can see the two nodes in the cluster. And that&#39;s it. You 
 [11]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-574.png "clip_image007.png"
 [12]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-575.png "clip_image008.png"
 [13]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-576.png "clip_image009.png"
-[14]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-579.png "clip_image010.png"
-[15]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-580.png "clip_image011.png"
-[16]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-581.png "clip_image012.png"
-[17]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-582.png "clip_image013.png"
-[18]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-583.png "clip_image014.png"
-[19]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-584.png "clip_image015.png"
-[20]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-585.png "clip_image016.png"
-[21]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-586.png "clip_image017.png"
-[22]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-587.png "clip_image018.png"
-[23]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-588.png "clip_image019.png"
-[24]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-589.png "clip_image020.png"
-[25]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-590.png "clip_image021.png"
-[26]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-591.png "clip_image022.png"
-[27]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-592.png "clip_image023.png"
-[28]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-593.png "clip_image024.png"
-[29]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-594.png "clip_image025.png"
-[30]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-595.png "clip_image026.png"
-[31]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-596.png"clip_image027.png"
+[14]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-577.png "clip_image010.png"
+[15]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-578.png "clip_image011.png"
+[16]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-579.png "clip_image012.png"
+[17]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-580.png "clip_image013.png"
+[18]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-581.png "clip_image014.png"
+[19]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-582.png "clip_image015.png"
+[20]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-583.png "clip_image016.png"
+[21]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-584.png "clip_image017.png"
+[22]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-585.png "clip_image018.png"
+[23]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-586.png "clip_image019.png"
+[24]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-587.png "clip_image020.png"
+[25]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-588.png "clip_image021.png"
+[26]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-589.png "clip_image022.png"
+[27]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-590.png "clip_image023.png"
+[28]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-591.png "clip_image024.png"
+[29]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-592.png "clip_image025.png"
+[30]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-593.png "clip_image026.png"
+[31]: https://pixelrobots.co.uk/wp-content/uploads/2019/01/Snip-594.png "clip_image027.png"
