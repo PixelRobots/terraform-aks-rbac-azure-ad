@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
- name: contoso-cluster-admins
+ name: aks-cluster-admins
 roleRef:
  apiGroup: rbac.authorization.k8s.io
  kind: ClusterRole
@@ -9,4 +9,4 @@ roleRef:
 subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: Group
-  name: ""
+  name: "0177a7b2-83c9-4345-9038-7f6adf4237c0"
