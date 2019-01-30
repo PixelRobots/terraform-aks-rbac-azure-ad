@@ -140,26 +140,12 @@ Now its time to deploy the AKS cluster using terraform.
 &nbsp;   
 First we need to edit the **variables.tf** file from the GitHub repo with the right names and values for your environment. We will need to also add our IDs we have from above along with our **Service Principal**  details.   
 &nbsp;   
-Now that we have the file sorted its time to set some environment variables. To do this in your VS Code Bash terminal or Windows subsytem for Linux terminal type the following commands.   
+Now its time to initialize Terraform. First, we need to update the backend.tfvars file with our storage account details for the tfstate file. You should have all this information if you followed the guide in the prerequisites. To actually initialize terraform in your VS Code Bash terminal or Windows subsystem for Linux terminal type the following. Just make sure you're in the directory with the terraform files.   
 &nbsp;   
 You will need to login to your Azure subscription first use:   
 &nbsp;   
 `az login `  
-&nbsp;   
-Once you are connected to your subscription enter the following to actually set the environment variables.   
-&nbsp;   
-```
-export TF_VAR_client_id=SERVICE_PRINCIPAL_CLIENT_ID   
-export TF_VAR_client_secret=SERVICE_PRINCIPAL_CLIENT_SECRET   
-export TF_VAR_rbac_server_app_id=RBAC_SERVER_APP_ID   
-export TF_VAR_rbac_server_app_secret=RBAC_SERVER_APP_PASSWORD   
-export TF_VAR_rbac_client_app_id=RBAC_CLIENT_APP_ID   
-export TF_VAR_tenant_id=AZURE_TENANT_ID 
-```  
-&nbsp;   
-[![clip_image021.png][25]][25]   
-&nbsp;   
-Now its time to initialize Terraform. First we need to update the backend.tfvars file with our storage account details for the tfstate file. You should have all this information if you followed the guide in the prerequisites. To actually initialize terraform in your VS Code Bash terminal or Windows subsytem for Linux terminal type the following. Just make sure your in the directory with the terraform files.   
+&nbsp;      
 &nbsp;   
 `terraform init -backend-config=backend.tfvars`   
 &nbsp;   
